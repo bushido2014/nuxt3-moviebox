@@ -1,3 +1,3 @@
 # nuxt3-moviebox
 
-Simple Movies app using Nuxt 3
+Simple Movie app using Nuxt 3
