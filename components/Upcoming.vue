@@ -16,7 +16,7 @@
         :spaceBetween="20"
         :navigation="true"
       >
-        <SwiperSlide v-for="up in upcoming.results.slice(0, 24)">
+        <SwiperSlide v-for="up in upcoming.results.slice(0, 28)">
           <div class="card">
             <div class="card__header">
               <img :src="`https://image.tmdb.org/t/p/w500/${up.poster_path}`" />
