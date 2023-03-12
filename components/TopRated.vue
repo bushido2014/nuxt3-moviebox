@@ -16,7 +16,7 @@
         :spaceBetween="20"
         :navigation="true"
       >
-        <SwiperSlide v-for="top in top_rated.results.slice(0, 28)">
+        <SwiperSlide v-for="top in top_rated.results.slice(0, 36)">
           <div class="card">
             <div class="card__header">
               <img
