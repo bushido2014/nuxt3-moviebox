@@ -476,6 +476,11 @@ input:focus::placeholder {
   .search-movie-wrapp {
     grid-template-columns: 1fr 1fr;
   }
+  .details {
+    grid-template-columns: 1fr;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 @media only screen and (max-width: 600px) {
   .top-rated-wrapp {
