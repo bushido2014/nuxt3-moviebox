@@ -22,6 +22,7 @@
           </div>
           <div class="details-description">
             <h2 v-if="movie">{{ movie.original_title }}</h2>
+            <p v-if="movie">{{ movie.tagline }}</p>
             <div class="genres-list" v-if="movie">
               <span class="genres" v-for="genre in movie.genres">{{
                 genre.name
