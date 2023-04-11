@@ -27,7 +27,7 @@
                 genre.name
               }}</span>
             </div>
-            <p v-if="movie">Released: {{ movie.release_date }}</p>
+            <p>Released: {{ movie.release_date }}</p>
 
             <div>
               <span
