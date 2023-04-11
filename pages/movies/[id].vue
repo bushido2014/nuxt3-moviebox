@@ -16,21 +16,20 @@
           <div class="details-img">
             <img
               class="w-full"
-              v-if="movie"
               :src="`https://image.tmdb.org/t/p/w500/${movie.poster_path}`"
             />
           </div>
           <div class="details-description">
-            <h2 v-if="movie">{{ movie.original_title }}</h2>
-            <p v-if="movie">{{ movie.tagline }}</p>
-            <div class="genres-list" v-if="movie">
+            <h2>{{ movie.original_title }}</h2>
+            <p>{{ movie.tagline }}</p>
+            <div class="genres-list">
               <span class="genres" v-for="genre in movie.genres">{{
                 genre.name
               }}</span>
             </div>
             <p v-if="movie">Released: {{ movie.release_date }}</p>
 
-            <div v-if="movie">
+            <div>
               <span
                 :class="[
                   'details__average',
@@ -46,20 +45,17 @@
                   'production-name': true,
                   columns: movie.production_companies.length > 3,
                 }"
-                v-if="movie"
               >
                 <li v-for="production in movie.production_companies">
                   <span>{{ production.name }}</span>
                 </li>
               </ul>
             </div>
-            <div class="details-overview" v-if="movie">
+            <div class="details-overview">
               <p>{{ movie.overview }}</p>
             </div>
             <div class="home-link">
-              <a :href="movie.homepage" target="_blank" v-if="movie"
-                >Home Page</a
-              >
+              <a :href="movie.homepage" target="_blank">Home Page</a>
             </div>
           </div>
         </div>
@@ -70,11 +66,11 @@
 
 <script lang="ts" setup>
 const route = useRoute();
-
+import { MovieDetalis } from '@/types';
 import { API_BASE_URL, API_KEY } from '~/config/constants';
 const isLoading = ref(true);
 
-const { data: movie } = useFetch(
+const { data: movie }: { data: MovieDetalis } = useFetch<MovieDetalis[]>(
   `${API_BASE_URL}${route.params.id}?api_key=${API_KEY}&language=en-US`
 );
 setTimeout(() => {
