@@ -1,5 +1,13 @@
 <template>
   <div>
+    <Head>
+      <Title> {{ movie.original_title }} | Game Detail </Title>
+      <Meta
+        name="description"
+        :content="movie.overview"
+      />
+    </Head>
+  <div>
     <Loader v-if="isLoading" />
     <div
       v-else
@@ -62,6 +70,7 @@
       </div>
     </div>
   </div>
+    </div>
 </template>
 
 <script lang="ts" setup>
@@ -79,11 +88,6 @@ setTimeout(() => {
 console.log(movie);
 
 useHead({
-  title: movie?.title
-    ? `${movie?.original_title} - Movie Details`
-    : 'Movie Details',
-
-  meta: [{ name: 'description', content: 'Movie description detail' }],
   bodyAttrs: {
     class: 'movie-details',
   },
