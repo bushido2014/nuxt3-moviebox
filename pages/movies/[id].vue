@@ -1,7 +1,7 @@
 <template>
   <div>
     <Head>
-      <Title> {{ movie.original_title }} | Game Detail </Title>
+      <Title> {{ movie.original_title }} | Movie Detail </Title>
       <Meta
         name="description"
         :content="movie.overview"
