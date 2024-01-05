@@ -36,7 +36,7 @@
               }}</span>
             </div>
             <p>Released: {{ movie.release_date }}</p>
-
+            <p>Budget: ${{movie.budget}}</p>
             <div>
               <span
                 :class="[
