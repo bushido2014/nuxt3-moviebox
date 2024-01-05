@@ -203,7 +203,7 @@ h2 {
 }
 .bg-slide {
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: top;
   width: 100%;
   background-size: cover;
   height: 100vh;
