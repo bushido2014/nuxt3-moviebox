@@ -1,7 +1,7 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
-  modules: ['nuxt-swiper'],
+  modules: ['nuxt-swiper', 'nuxt-gtag'],
   head: {
     meta: [
       { charset: 'utf-8' },
@@ -13,5 +13,8 @@ export default defineNuxtConfig({
       },
       { name: 'format-detection', content: 'telephone=no' },
     ],
+  },
+  gtag: {
+    id: 'G-L1M6JHWR6T'
   },
 });
