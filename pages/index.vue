@@ -7,6 +7,7 @@
 </template>
 
 <script lang="ts" setup>
+  
 useHead({
   title: 'Movie Home Page',
   meta: [{ name: 'description', content: 'Movie all' }],
@@ -14,4 +15,5 @@ useHead({
     class: 'index-page',
   },
 });
+  
 </script>
