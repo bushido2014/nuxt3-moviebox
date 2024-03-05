@@ -1,6 +1,7 @@
 <template>
   <header class="header" :class="{ sticky_header: active }">
     <div class="container">
+      
       <div>
         <NuxtLink class="header-logo" to="/"
           ><img
@@ -20,6 +21,7 @@
           </li>
         </ul>
       </nav>
+      
     </div>
   </header>
 </template>
