@@ -94,7 +94,31 @@
       </div>
 
 
+      <div class="recomended-wrapper">
+        <div class="container">
+          <div class="section-title">
+            <h3>Recommendations</h3>
+          </div>
+          <Swiper :modules="[SwiperScrollbar]" :breakpoints="{
+            640: { slidesPerView: 1 },
+            720: { slidesPerView: 2 },
+            768: { slidesPerView: 3 },
+            1024: { slidesPerView: 4 },
+          }" :loop="false" :spaceBetween="20" :navigation="false" :scrollbar="{ draggable: true }">
+            <SwiperSlide v-for="rec in recomendations.results.slice(0, 6)">
+              <NuxtLink :to="`${rec.id}`" class="card rec-card">
+                <div class="card__body">
+                  <img :src="`https://image.tmdb.org/t/p/w300/${rec.backdrop_path}`" />
+                  <p> {{ rec.original_title }}</p>
+                </div>
 
+              </NuxtLink>
+            </SwiperSlide>
+            <div class="swiper-scrollbar"></div>
+          </Swiper>
+
+        </div>
+      </div>
 
 
 
@@ -120,10 +144,13 @@ const { data: movie }: { data: MovieDetalis } = useFetch<MovieDetalis[]>(
 const { data: casts } = await useFetch(`${API_BASE_URL}${route.params.id}/credits?api_key=${API_KEY}&language=en-US`);
 //console.log(casts);
 
+const { data: recomendations } = await useFetch(`${API_BASE_URL}${route.params.id}/recommendations?api_key=${API_KEY}&language=en-US`);
+//console.log(recomendations);
+
 setTimeout(() => {
   isLoading.value = false;
 }, 1800);
-console.log(movie);
+//console.log(movie);
 
 useHead({
   bodyAttrs: {
@@ -155,5 +182,27 @@ useHead({
 .actors-wpapper {
   background-color: #1b2c34;
 
+}
+.recomended-wrapper {
+  background-color: #f7f7f7;
+  color: initial;
+}
+
+.rec-card {
+  overflow: hidden;
+  position: relative;
+}
+
+.rec-card p,
+.rec-card img {
+  transition: 0.3s;
+}
+
+.rec-card:hover p {
+  color: var(--primary-color);
+}
+
+.rec-card:hover img {
+  filter: grayscale(160%);
 }
 </style>
