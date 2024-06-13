@@ -186,6 +186,7 @@ useHead({
 .recomended-wrapper {
   background-color: #f7f7f7;
   color: initial;
+  padding: 20px 0;
 }
 
 .rec-card {
