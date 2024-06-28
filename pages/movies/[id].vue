@@ -105,7 +105,7 @@
             768: { slidesPerView: 3 },
             1024: { slidesPerView: 4 },
           }" :loop="false" :spaceBetween="20" :navigation="false" :scrollbar="{ draggable: true }">
-            <SwiperSlide v-for="rec in recomendations.results.slice(0, 6)">
+            <SwiperSlide v-for="rec in recomendations.results.slice(0, 8)">
               <NuxtLink :to="`${rec.id}`" class="card rec-card">
                 <div class="card__body">
                   <img :src="`https://image.tmdb.org/t/p/w300/${rec.backdrop_path}`" />
