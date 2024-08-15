@@ -17,7 +17,5 @@ export default defineNuxtConfig({
   gtag: {
     id: 'G-L1M6JHWR6T'
   },
-  routeRules: {
-  '/**': isDev ? {} : { cache: { swr: true, maxAge: 60, staleMaxAge: 30, headersOnly: true } },
-},
+ 
 });
