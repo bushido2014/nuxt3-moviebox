@@ -1,2 +1,2 @@
 /*
-  Cache-Control: max-age=60, stale-while-revalidate=3600
+  Cache-Control: no-store, no-cache, must-revalidate
