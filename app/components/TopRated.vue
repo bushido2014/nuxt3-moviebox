@@ -2,9 +2,9 @@
   <section class="top-rated">
     <div class="container">
       <div class="section-title">
-        <h2>Upcoming Movies</h2>
+        <h2>Top Rated Movies</h2>
       </div>
-      <Swiper
+      <swiper-container
         :modules="[SwiperNavigation]"
         :breakpoints="{
           640: { slidesPerView: 1 },
@@ -16,42 +16,44 @@
         :spaceBetween="20"
         :navigation="true"
       >
-        <SwiperSlide v-for="up in upcoming.results">
+        <swiper-slide v-for="top in top_rated.results || []">
           <div class="card">
             <div class="card__header">
-              <img :src="`https://image.tmdb.org/t/p/w500/${up.poster_path}`" />
+              <img
+                :src="`https://image.tmdb.org/t/p/w500/${top.poster_path}`"
+              />
             </div>
             <div class="card__body">
               <div class="card__body-title">
-                <h4>{{ up.original_title }}</h4>
+                <h4>{{ top.original_title }}</h4>
               </div>
               <div class="flex card__details">
-                <div class="card__date">{{ up.release_date }}</div>
+                <div class="card__date">{{ top.release_date }}</div>
                 <div
                   :class="[
                     'card__average',
-                    up.vote_average >= 7 ? 'green' : 'yellow',
+                    top.vote_average >= 7 ? 'green' : 'yellow',
                   ]"
                 >
-                  {{ up.vote_average }}
+                  {{ top.vote_average }}
                 </div>
               </div>
-
-              <NuxtLink :to="`movies/${up.id}`" class="button"
+              <NuxtLink :to="`movies/${top.id}`" class="button"
                 >Read More
               </NuxtLink>
             </div>
           </div>
-        </SwiperSlide>
-      </Swiper>
+        </swiper-slide>
+      </swiper-container>
     </div>
   </section>
 </template>
 <script lang="ts" setup>
-import { API_BASE_URL, API_KEY } from '~/config/constants';
-import { upComing } from '@/types';
-const { data: upcoming }: { data: upComing } = await useFetch<upComing[]>(
-  `${API_BASE_URL}upcoming?api_key=${API_KEY}&language=en-US&page=1`
-);
-//console.log(upcoming);
+
+import { topRated } from '@/types';
+
+const { data: topRatedMovies } = await useFetch('/api/movies/top_rated')
+
+
+//console.log(top_rated);
 </script>

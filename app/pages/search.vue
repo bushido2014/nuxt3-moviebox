@@ -36,37 +36,30 @@
   </section>
 </template>
 
-<script>
-import { ref } from 'vue';
-import { API_KEY } from '~/config/constants';
+<script lang="ts" setup>
+import { ref } from 'vue'
 
 const state = ref({
   query: '',
-  movies: [],
-});
+  movies: [] as any[],
+})
 
 const search = async () => {
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&page=1&query=${state.value.query}`;
-  const response = await fetch(url);
-  const { results } = await response.json();
-  state.value.movies = results;
-};
+  if (!state.value.query) return
 
-export default {
-  setup() {
-    useHead({
-      title: 'Movie Search Page',
-      bodyAttrs: {
-        class: 'search-page',
-      },
-    });
+  const { results } = await $fetch<{ results: any[] }>(
+    `/api/movies/search?query=${encodeURIComponent(state.value.query)}`
+  )
+  state.value.movies = results
+}
 
-    return {
-      state,
-      search,
-    };
+// Head meta
+useHead({
+  title: 'Movie Search Page',
+  bodyAttrs: {
+    class: 'search-page',
   },
-};
+})
 </script>
 
 <style scoped>

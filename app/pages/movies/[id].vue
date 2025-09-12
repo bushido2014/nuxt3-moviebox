@@ -134,18 +134,15 @@
 
 <script lang="ts" setup>
 const route = useRoute();
-import { MovieDetalis } from '@/types';
-import { API_BASE_URL, API_KEY } from '~/config/constants';
 const isLoading = ref(true);
 
-const { data: movie }: { data: MovieDetalis } = useFetch<MovieDetalis[]>(
-  `${API_BASE_URL}${route.params.id}?api_key=${API_KEY}&language=en-US`
-);
-const { data: casts } = await useFetch(`${API_BASE_URL}${route.params.id}/credits?api_key=${API_KEY}&language=en-US`);
-//console.log(casts);
+import { MovieDetalis } from '@/types';
 
-const { data: recomendations } = await useFetch(`${API_BASE_URL}${route.params.id}/recommendations?api_key=${API_KEY}&language=en-US`);
-//console.log(recomendations);
+const { data: movie } = await useFetch<MovieDetalis>(`/api/movies/${route.params.id}`)
+
+const { data: casts } = await useFetch(`/api/movies/${route.params.id}/credits`)
+
+const { data: recomendations } = await useFetch(`/api/movies/${route.params.id}/recommendations`)
 
 setTimeout(() => {
   isLoading.value = false;

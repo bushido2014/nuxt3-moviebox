@@ -18,5 +18,8 @@ export default defineNuxtConfig({
   gtag: {
     id: 'G-L1M6JHWR6T'
   },
- 
+  runtimeConfig: {
+    tmdbApiKey: process.env.TMDB_API_KEY, // server-only
+    public: {}
+  },
 });

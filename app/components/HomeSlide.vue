@@ -1,5 +1,5 @@
 <template>
-  <Swiper
+  <swiper-container
     :modules="[SwiperAutoplay, SwiperEffectFade]"
     :slides-per-view="1"
     :loop="true"
@@ -11,8 +11,9 @@
       disableOnInteraction: true,
     }"
   >
-    <SwiperSlide
-      v-for="popular in popularMovies.results"
+    <swiper-slide
+      v-for="popular in popularMovies.results  || []"
+      :key="popular.id"
       class="animeslide-slide"
     >
       <div
@@ -37,16 +38,15 @@
           </div>
         </div>
       </div>
-    </SwiperSlide>
-  </Swiper>
+    </swiper-slide>
+  </swiper-container>
 </template>
 <script lang="ts" setup>
-import { API_BASE_URL, API_KEY } from '~/config/constants';
+
 import { Popular } from '@/types';
 
-const { data: popularMovies }: { data: Popular } = await useFetch<Popular[]>(
-  `${API_BASE_URL}popular?api_key=${API_KEY}&language=en-US&page=1`
-);
+const { data: popularMovies } = await useFetch('/api/movies/popular');
+
 
 //console.log(popularMovies);
 </script>
