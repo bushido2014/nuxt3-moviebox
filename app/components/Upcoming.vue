@@ -4,8 +4,8 @@
       <div class="section-title">
         <h2>Upcoming Movies</h2>
       </div>
-      <swiper-container
-        :modules="[SwiperNavigation]"
+      <Swiper
+        :modules="[Navigation]"
         :breakpoints="{
           640: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
@@ -14,9 +14,9 @@
         }"
         :loop="true"
         :spaceBetween="20"
-        :navigation="true"
+    :navigation="true"
       >
-        <swiper-slide v-for="up in upcoming.results || []">
+        <SwiperSlide v-for="up in upcomingMovies.value?.results || []" :key="up.id">
           <div class="card">
             <div class="card__header">
               <img :src="`https://image.tmdb.org/t/p/w500/${up.poster_path}`" />
@@ -42,17 +42,18 @@
               </NuxtLink>
             </div>
           </div>
-        </swiper-slide>
-      </swiper-container>
+        </SwiperSlide>
+      </Swiper>
     </div>
   </section>
 </template>
 <script lang="ts" setup>
 
-import { upComing } from '@/types';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import Navigation from 'swiper/modules/navigation';
 
-const { data: upcomingMovies } = await useFetch('/api/movies/upcoming');
+const { data: upcomingMovies } = useFetch('upcoming', () => $fetch('/api/movies/upcoming'));
+//console.log(upcomingMovies.value);
 
-
-//console.log(upcoming);
+//console.log(upcomingMovies.value);
 </script>

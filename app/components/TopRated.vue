@@ -4,8 +4,8 @@
       <div class="section-title">
         <h2>Top Rated Movies</h2>
       </div>
-      <swiper-container
-        :modules="[SwiperNavigation]"
+      <Swiper
+        :modules="['navigation']"
         :breakpoints="{
           640: { slidesPerView: 1 },
           768: { slidesPerView: 2 },
@@ -14,9 +14,8 @@
         }"
         :loop="true"
         :spaceBetween="20"
-        :navigation="true"
       >
-        <swiper-slide v-for="top in top_rated.results || []">
+        <SwiperSlide v-for="top in topRatedMovies.value?.results || []" :key="top.id">
           <div class="card">
             <div class="card__header">
               <img
@@ -43,17 +42,15 @@
               </NuxtLink>
             </div>
           </div>
-        </swiper-slide>
-      </swiper-container>
+        </SwiperSlide>
+      </Swiper>
     </div>
   </section>
 </template>
 <script lang="ts" setup>
 
-import { topRated } from '@/types';
+import { Ref } from 'vue';
 
-const { data: topRatedMovies } = await useFetch('/api/movies/top_rated')
-
-
-//console.log(top_rated);
+const { data: topRatedMovies } = useFetch('topRated', () => $fetch('/api/movies/top_rated')) as { data: Ref<any> };
+//console.log(topRatedMovies.value);
 </script>

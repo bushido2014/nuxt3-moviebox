@@ -1,18 +1,15 @@
 <template>
-  <swiper-container
-    :modules="[SwiperAutoplay, SwiperEffectFade]"
+  <Swiper
+    :modules="['autoplay', 'effect-fade']"
     :slides-per-view="1"
     :loop="true"
     :speed="2600"
     :spaceBetween="20"
-    :effect="'fade'"
-    :autoplay="{
-      delay: 2600,
-      disableOnInteraction: true,
-    }"
+    effect="fade"
+    :autoplay="{ delay: 2600, disableOnInteraction: true }"
   >
-    <swiper-slide
-      v-for="popular in popularMovies.results  || []"
+    <SwiperSlide
+      v-for="popular in popularMovies.value?.results || []"
       :key="popular.id"
       class="animeslide-slide"
     >
@@ -38,15 +35,15 @@
           </div>
         </div>
       </div>
-    </swiper-slide>
-  </swiper-container>
+    </SwiperSlide>
+  </Swiper>
 </template>
 <script lang="ts" setup>
 
-import { Popular } from '@/types';
+import { Popular } from '../types';
 
-const { data: popularMovies } = await useFetch('/api/movies/popular');
+import { Swiper, SwiperSlide } from 'swiper/vue';
 
-
-//console.log(popularMovies);
+const { data: popularMovies } = useFetch('popular', () => $fetch('/api/movies/popular'));
+//console.log(popularMovies.value);
 </script>
