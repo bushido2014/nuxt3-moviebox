@@ -13,7 +13,7 @@
             1024: { slidesPerView: 3 },
             1280: { slidesPerView: 4 },
           }"
-          :loop="(topRatedMovies.value?.results?.length || 0) > 1"
+          :loop="(topRatedMovies.length > 1"
           :spaceBetween="20"
         >
           <SwiperSlide v-for="top in topRatedMovies.value?.results || []" :key="top.id">
@@ -63,3 +63,4 @@ if (data.value?.results) {
   topRatedMovies.value = data.value.results
 }
 </script>
+
