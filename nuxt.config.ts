@@ -2,7 +2,7 @@
 
 export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
-  modules: ['nuxt-swiper', 'nuxt-gtag'],
+  modules: ['nuxt-gtag'],
   head: {
     meta: [
       { charset: 'utf-8' },
@@ -20,6 +20,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     tmdbApiKey: process.env.TMDB_API_KEY, // server-only
-    public: {}
+    public: {
+      tmdbApiKey: process.env.TMDB_API_KEY
+    }
   },
 });
