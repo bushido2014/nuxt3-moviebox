@@ -12,8 +12,10 @@ export default defineEventHandler(async (event) => {
     // ruta de search: /api/movies/search?query=...
     url = `https://api.themoviedb.org/3/search/movie?api_key=${config.tmdbApiKey}&language=en-US&page=1&query=${encodeURIComponent(query.query || '')}`
   } else {
-    // toate celelalte rute: /movie/{id} sau /movie/{id}/credits /recommendations
-    url = `https://api.themoviedb.org/3/movie/${path.join('/')}?api_key=${config.tmdbApiKey}&language=en-US`
+    // rutele dinamice: /movie/{id}, /movie/{id}/credits, /movie/{id}/recommendations
+    // construim TMDB URL direct din path array
+    url = `https://api.themoviedb.org/3/movie/${path.join('/')}`
+    url += url.includes('?') ? `&api_key=${config.tmdbApiKey}&language=en-US` : `?api_key=${config.tmdbApiKey}&language=en-US`
   }
 
   try {
