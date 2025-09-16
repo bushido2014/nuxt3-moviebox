@@ -40,6 +40,7 @@
   </section>
 </template>
 <script lang="ts" setup>
+
 import { ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper/modules'

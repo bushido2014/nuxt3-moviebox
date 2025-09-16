@@ -216,10 +216,12 @@ h3 {
   width: 100%;
   background-size: cover;
   height: 100vh;
+  height: 100dvh;
   position: relative;
   padding-left: 15px;
   padding-right: 15px;
 }
+
 .bg-slide::before {
   content: '';
   position: absolute;
@@ -229,13 +231,15 @@ h3 {
   bottom: 0;
   background-color: #171b1d;
   opacity: 0.72;
+  inset: 0;
+  z-index: 1;
 }
 
 .description-container {
-  padding-top: 12rem;
-  z-index: 1;
+  padding-top: 8rem;
+  z-index: 2;
   position: relative;
-  padding-bottom: 2rem;
+  padding-bottom: 2.2rem;
 }
 
 .description-card {

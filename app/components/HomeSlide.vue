@@ -41,6 +41,7 @@
 </template>
 
 <script lang="ts" setup>
+
 import { ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Autoplay, EffectFade } from 'swiper/modules'

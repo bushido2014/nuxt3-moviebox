@@ -68,7 +68,7 @@
           </div>
 
        <client-only>
-          <Swiper :modules="[SwiperNavigation]" :breakpoints="{
+          <Swiper :modules="[Navigation]" :breakpoints="{
             640: { slidesPerView: 1 },
             720: { slidesPerView: 2 },
             768: { slidesPerView: 3 },
@@ -100,7 +100,7 @@
             <h3>Recommendations</h3>
           </div>
           <client-only>
-          <Swiper :modules="[SwiperScrollbar]" :breakpoints="{
+          <Swiper :modules="[Scrollbar]" :breakpoints="{
             640: { slidesPerView: 1 },
             720: { slidesPerView: 2 },
             768: { slidesPerView: 3 },
@@ -134,11 +134,12 @@
 </template>
 
 <script lang="ts" setup>
+
 const route = useRoute();
 const isLoading = ref(true);
 import { Swiper, SwiperSlide } from 'swiper/vue'
-
-import { MovieDetalis } from '@/types';
+import { Navigation,  Scrollbar } from 'swiper/modules';
+import type { MovieDetalis } from '@/types/index';
 
 const { data: movie } = await useFetch<MovieDetalis>(`/api/movies/${route.params.id}`)
 
