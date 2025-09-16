@@ -67,7 +67,7 @@
             <h2>Top Billed Cast</h2>
           </div>
 
-
+       <client-only>
           <Swiper :modules="[SwiperNavigation]" :breakpoints="{
             640: { slidesPerView: 1 },
             720: { slidesPerView: 2 },
@@ -88,7 +88,7 @@
               </div>
             </SwiperSlide>
           </Swiper>
-
+        </client-only>
         </div>
 
       </div>
@@ -99,6 +99,7 @@
           <div class="section-title">
             <h3>Recommendations</h3>
           </div>
+          <client-only>
           <Swiper :modules="[SwiperScrollbar]" :breakpoints="{
             640: { slidesPerView: 1 },
             720: { slidesPerView: 2 },
@@ -116,7 +117,7 @@
             </SwiperSlide>
             <div class="swiper-scrollbar"></div>
           </Swiper>
-
+           </client-only>
         </div>
       </div>
 
@@ -135,6 +136,7 @@
 <script lang="ts" setup>
 const route = useRoute();
 const isLoading = ref(true);
+import { Swiper, SwiperSlide } from 'swiper/vue'
 
 import { MovieDetalis } from '@/types';
 

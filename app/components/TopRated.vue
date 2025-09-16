@@ -13,10 +13,11 @@
             1024: { slidesPerView: 3 },
             1280: { slidesPerView: 4 },
           }"
-          :loop="(topRatedMovies.length > 1"
+          :loop="topRatedMovies.length > 1"
           :spaceBetween="20"
+          :navigation="true"
         >
-          <SwiperSlide v-for="top in topRatedMovies.value?.results || []" :key="top.id">
+          <SwiperSlide v-for="top in topRatedMovies" :key="top.id">
             <div class="card">
               <div class="card__header">
                 <img
