@@ -29,6 +29,15 @@ export default defineNuxtConfig({
     }
   },
   nitro: {
-    preset: 'netlify'
-  }
+    preset: 'netlify',
+    experimental: {
+      wasm: false
+    },
+    routeRules: {
+      '/api/**': { 
+        cors: true,
+        headers: { 'Access-Control-Allow-Origin': '*' }
+      }
+    }
+  },
 });
