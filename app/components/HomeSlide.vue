@@ -54,6 +54,6 @@ if (data.value?.results) {
   popularMovies.value = data.value.results
 }
 
-console.log(popularMovies.value);
-console.log(data, error);
+
 </script>
+
