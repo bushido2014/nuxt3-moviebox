@@ -176,20 +176,20 @@ const route = useRoute();
 const isLoading = ref(true);
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation,  Scrollbar } from 'swiper/modules';
-import type { MovieDetalis } from '@/types/index';
+
 
 import { API_BASE_URL, API_KEY } from '~/config/constants'
 
-const { data: movie } = await useFetch<MovieDetalis>(
-  `${API_BASE_URL}${route.params.id}?api_key=${API_KEY}&language=en-US`
+const { data: movie } = await useFetch(
+  `${API_BASE_URL}/movie/${route.params.id}?api_key=${API_KEY}&language=en-US`
 );
 
 const { data: casts } = await useFetch(
-  `${API_BASE_URL}${route.params.id}/credits?api_key=${API_KEY}&language=en-US`
+  `${API_BASE_URL}/movie/${route.params.id}credits?api_key=${API_KEY}&language=en-US`
 );
 
 const { data: recomendations } = await useFetch(
-  `${API_BASE_URL}${route.params.id}/recommendations?api_key=${API_KEY}&language=en-US`
+  `${API_BASE_URL}/movie/${route.params.id}/recommendations?api_key=${API_KEY}&language=en-US`
 );
 
 setTimeout(() => {
