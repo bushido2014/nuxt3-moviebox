@@ -1,7 +1,8 @@
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const id = event.context.params?.id
 
+   const { id } = event.context.params
+   
   if (!id) {
     throw createError({
       statusCode: 400,
