@@ -55,10 +55,12 @@
 import { ref } from 'vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation } from 'swiper/modules'
-
+import { API_BASE_URL, API_KEY } from '~/config/constants'
 const topRatedMovies = ref<any[]>([])
 
-const { data } = await useFetch('/api/movies/top_rated')
+const { data } = await useFetch(
+  `${API_BASE_URL}/movie/top_rated?api_key=${API_KEY}&language=en-US&page=1`
+)
 
 if (data.value?.results) {
   topRatedMovies.value = data.value.results
