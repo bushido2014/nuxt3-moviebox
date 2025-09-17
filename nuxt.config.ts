@@ -20,8 +20,15 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     tmdbApiKey: process.env.TMDB_API_KEY, // server-only
+    tmdbBaseURL: 'https://api.themoviedb.org/3/',
     public: {
-      tmdbApiKey: process.env.TMDB_API_KEY
+      tmdbApiKey: process.env.TMDB_API_KEY,
+      apiBase: process.env.NODE_ENV === 'production' 
+        ? 'https://nuxt3movie-box.netlify.app' 
+        : ''
     }
   },
+  nitro: {
+    preset: 'netlify'
+  }
 });

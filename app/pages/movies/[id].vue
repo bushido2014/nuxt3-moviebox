@@ -178,11 +178,14 @@ import { Swiper, SwiperSlide } from 'swiper/vue'
 import { Navigation,  Scrollbar } from 'swiper/modules';
 import type { MovieDetalis } from '@/types/index';
 
-const { data: movie } = await useFetch<MovieDetalis>(`/api/movies/${route.params.id}`)
+const config = useRuntimeConfig();
+const apiBase = config.public.apiBase;
 
-const { data: casts } = await useFetch(`/api/movies/${route.params.id}/credits`)
+const { data: movie } = await useFetch<MovieDetalis>(`${apiBase}/api/movies/${route.params.id}`)
 
-const { data: recomendations } = await useFetch(`/api/movies/${route.params.id}/recommendations`)
+const { data: casts } = await useFetch(`${apiBase}/api/movies/${route.params.id}/credits`)
+
+const { data: recomendations } = await useFetch(`${apiBase}/api/movies/${route.params.id}/recommendations`)
 
 setTimeout(() => {
   isLoading.value = false;

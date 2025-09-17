@@ -1,5 +1,6 @@
 <template>
   <div class="home-page">
+    
     <HomeSlide />
     <TopRated />
     <Upcoming />
@@ -7,6 +8,7 @@
 </template>
 
 <script lang="ts" setup>
+
   useHead({
   title: 'Movie Home Page',
   meta: [{ name: 'description', content: 'Movie all' }],

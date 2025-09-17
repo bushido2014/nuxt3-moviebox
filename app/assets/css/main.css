@@ -210,6 +210,18 @@ h3 {
   background-color: #0f171e;
   color: var(--white-color);
 }
+.index-page {
+  background-color: #0f171e;
+}
+.index-page .loader {
+  background-color: #0f171e;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+}
 .bg-slide {
   background-repeat: no-repeat;
   background-position: top;
