@@ -180,9 +180,9 @@ import type { MovieDetalis } from '@/types/index';
 
 
 
-const { data: movie } = await useFetch<MovieDetalis>(`/api/movies/${route.params.id}`)
-const { data: casts } = await useFetch(`/api/movies/${route.params.id}/credits`)
-const { data: recomendations } = await useFetch(`/api/movies/${route.params.id}/recommendations`)
+const { data: movie } = await useAsyncData<MovieDetalis>(`/api/movies/${route.params.id}`)
+const { data: casts } = await useAsyncData(`/api/movies/${route.params.id}/credits`)
+const { data: recomendations } = await useAsyncData(`/api/movies/${route.params.id}/recommendations`)
 
 setTimeout(() => {
   isLoading.value = false;
@@ -244,4 +244,5 @@ useHead({
   filter: grayscale(160%);
 }
 </style>
+
 
