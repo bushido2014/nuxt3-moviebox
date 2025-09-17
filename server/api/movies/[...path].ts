@@ -1,40 +1,36 @@
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  let path = event.context.params?.path
-
-
-  if (!Array.isArray(path)) {
-    path = path ? [path] : []
-  }
-
+  const path = event.context.params?.path
   const query = getQuery(event)
-  let url = ''
 
-  if (path[0] === 'search') {
-    
-    if (!query.query) {
-      throw createError({
-        statusCode: 400,
-        statusMessage: 'Search query is required',
-      })
-    }
+  // Asigurăm că path e array
+  const pathArray = Array.isArray(path) ? path : path ? [path] : []
 
-    url = `https://api.themoviedb.org/3/search/movie?api_key=${config.tmdbApiKey}&language=en-US&page=1&query=${encodeURIComponent(
-      query.query as string
-    )}`
+  const apiKey = config.tmdbApiKey
+  const baseURL = config.tmdbBaseURL || "https://api.themoviedb.org/3/"
+
+  let url = ""
+
+  // 1) Search: /api/movies/search?query=Batman
+  if (pathArray[0] === "search" && query.query) {
+    url = `${baseURL}search/movie?api_key=${apiKey}&language=en-US&page=1&query=${encodeURIComponent(query.query as string)}`
+  }
+  // 2) Movie details, credits, recommendations etc.
+  else if (pathArray.length > 0) {
+    url = `${baseURL}movie/${pathArray.join("/")}?api_key=${apiKey}&language=en-US`
   } else {
-   
-    url = `https://api.themoviedb.org/3/movie/${path.join(
-      '/'
-    )}?api_key=${config.tmdbApiKey}&language=en-US`
+    throw createError({
+      statusCode: 400,
+      statusMessage: "Invalid API path"
+    })
   }
 
   try {
     return await $fetch(url)
-  } catch (err: any) {
+  } catch (err) {
     throw createError({
       statusCode: 500,
-      statusMessage: `TMDB API error: ${err.message || err}`,
+      statusMessage: `TMDB API error: ${err}`
     })
   }
 })
