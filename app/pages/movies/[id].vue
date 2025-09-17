@@ -202,6 +202,10 @@ useHead({
     class: 'movie-details',
   },
 });
+
+console.log('Movie:', movie.value);
+console.log('Casts:', casts.value);
+console.log('Recommendations:', recomendations.value);
 </script>
 <style scoped>
 .actors-wpapper {
