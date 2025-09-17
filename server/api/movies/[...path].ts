@@ -1,21 +1,31 @@
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
+  const path = event.context.params?.path
 
-  let path = event.context.params?.path
-  if (!Array.isArray(path)) path = path ? [path] : []
-
+  if (!path) {
+    throw createError({
+      statusCode: 400,
+      statusMessage: 'Missing path',
+    })
+  }
   const query = getQuery(event)
-
   let url = ''
 
   if (path[0] === 'search') {
-    // ruta de search: /api/movies/search?query=...
-    url = `https://api.themoviedb.org/3/search/movie?api_key=${config.tmdbApiKey}&language=en-US&page=1&query=${encodeURIComponent(query.query || '')}`
+    if (!query.query) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Search query is required',
+      })
+    }
+    url = `https://api.themoviedb.org/3/search/movie?api_key=${config.tmdbApiKey}&language=en-US&page=1&query=${encodeURIComponent(
+      query.query as string
+    )}`
   } else {
-    // rutele dinamice: /movie/{id}, /movie/{id}/credits, /movie/{id}/recommendations
-    // construim TMDB URL direct din path array
-    url = `https://api.themoviedb.org/3/movie/${path.join('/')}`
-    url += url.includes('?') ? `&api_key=${config.tmdbApiKey}&language=en-US` : `?api_key=${config.tmdbApiKey}&language=en-US`
+    
+    url = `https://api.themoviedb.org/3/movie/${path.join(
+      '/'
+    )}?api_key=${config.tmdbApiKey}&language=en-US`
   }
 
   try {
