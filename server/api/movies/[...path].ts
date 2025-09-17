@@ -11,7 +11,7 @@ export default defineEventHandler(async (event) => {
   let url = ''
 
   if (path[0] === 'search') {
-    // Exemplu: /api/movies/search?query=batman
+    
     if (!query.query) {
       throw createError({
         statusCode: 400,
