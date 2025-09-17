@@ -38,6 +38,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { API_BASE_URL, API_KEY } from '~/config/constants'
 
 const state = ref({
   query: '',
@@ -48,7 +49,7 @@ const search = async () => {
   if (!state.value.query) return
 
   const { results } = await $fetch<{ results: any[] }>(
-    `/api/movies/search?query=${encodeURIComponent(state.value.query)}`
+    `${API_BASE_URL}search/movie?api_key=${API_KEY}&query=${encodeURIComponent(state.value.query)}&include_adult=false`
   )
   state.value.movies = results
 }
@@ -61,6 +62,7 @@ useHead({
   },
 })
 </script>
+
 
 <style scoped>
 .search {

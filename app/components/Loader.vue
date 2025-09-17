@@ -15,7 +15,8 @@ export default defineComponent({});
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.1);
+  /* background: rgba(0, 0, 0, 0.1); */
+  background: linear-gradient(180deg, #0d1b2a, #1b263b);
 }
 .loader {
   width: 48px;
