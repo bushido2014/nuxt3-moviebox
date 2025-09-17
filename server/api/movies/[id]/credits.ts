@@ -10,10 +10,14 @@ export default defineEventHandler(async (event) => {
     })
   }
 
+const apiKey = config.tmdbApiKey
+const baseURL = config.tmdbBaseURL
+
+
   try {
-    const response = await $fetch(`${config.tmdbBaseURL}movie/${id}/credits`, {
+    const response = await $fetch(`${baseURL}movie/${id}/credits`, {
       params: {
-        api_key: config.tmdbApiKey,
+        api_key: apiKey,
         language: 'en-US'
       }
     })

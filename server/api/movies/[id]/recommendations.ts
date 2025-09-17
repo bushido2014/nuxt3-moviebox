@@ -9,11 +9,14 @@ export default defineEventHandler(async (event) => {
       statusMessage: 'Movie ID is required'
     })
   }
+const apiKey = config.tmdbApiKey
+const baseURL = config.tmdbBaseURL
+
 
   try {
-    const response = await $fetch(`${config.tmdbBaseURL}movie/${id}/recommendations`, {
+    const response = await $fetch(`${baseURL}movie/${id}/recommendations`, {
       params: {
-        api_key: config.tmdbApiKey,
+        api_key: apiKey,
         language: 'en-US'
       }
     })
