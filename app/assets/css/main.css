@@ -250,6 +250,9 @@ h3 {
   max-width: 500px;
   z-index: 2;
 }
+.description-card__body .button {
+  z-index: 10;
+}
 .description-card__link {
   background: #be123c;
   color: var(--white-color);
@@ -257,7 +260,7 @@ h3 {
   border-radius: 6px;
   line-height: 24px;
   text-transform: uppercase;
-  z-index: 10;
+  
 }
 .description-card__body p {
   margin-bottom: 1.2rem;
@@ -524,4 +527,5 @@ input:focus::placeholder {
     grid-template-columns: 1fr;
   }
 }
+
 
